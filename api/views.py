@@ -5,19 +5,19 @@ from rest_framework.decorators import api_view
 
 
 #views here
-@api_view
+@api_view(['GET'])
 def GetProjects(request):
     projects = Projects.objects.all()
     serializer = ProjectsSerializer(projects, many = True)
     return Response(serializer.data)
 
-@api_view
+@api_view(['GET'])
 def GetProfile(request,pk):
     profile = Profile.objects.get(id=pk)
     serializer = ProfileSerializer(profile, many = False)
     return Response(serializer.data)
 
-@api_view
+@api_view(['GET'])
 def GetSpecificProject(request,pk):
     article = Projects.objects.get(id=pk)
     serializer = ProfileSerializer(article, many = False)
