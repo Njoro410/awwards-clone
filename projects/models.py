@@ -13,3 +13,11 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
     
+class Projects(models.Model):
+    title = models.CharField(max_length=50)
+    image = models.ImageField(upload_to = 'projects/', default = 'image')
+    description = models.TextField()
+    url = models.URLField()
+    
+    def __str__(self):
+        return self.title
