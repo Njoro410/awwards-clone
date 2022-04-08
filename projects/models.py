@@ -14,6 +14,7 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
     
 class Projects(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     image = models.ImageField(upload_to = 'projects/', default = 'image')
     description = models.TextField()
@@ -21,3 +22,13 @@ class Projects(models.Model):
     
     def __str__(self):
         return self.title
+    
+class Rating(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    design = models.IntegerField(blank=True, null=True,default=0)
+    usability = models.IntegerField(blank=True, null=True,default=0)
+    content = models.IntegerField(blank=True, null=True,default=0)
+    
+    def __str__(self):
+        return f'{self.user.username} Rating'
+    
