@@ -62,9 +62,9 @@ def addreview(request, id):
             review = form.save(commit=False)
             review.user = request.user
             review.project_id = id
-            review.save()
+            data = review.save()
 
-            return HttpResponseRedirect('index.html')
+            return redirect('projectdetails',id)
 
     return render(request, 'addreview.html', {'form': form})
 
