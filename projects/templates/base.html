@@ -1,0 +1,138 @@
+{# Load the tag library #}
+
+{% include 'material/includes/material_css.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:wght@500&display=swap" rel="stylesheet">
+  {% block title %} {% endblock %} {# Load CSS #}
+  {% block style %}
+
+  <link rel="stylesheet" href="/" />
+  {% endblock %}
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256- 
+DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
+</script>
+</head>
+
+
+
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper  teal lighten-2">
+      <ul id="slide-out">
+        <div class="nav-wrapper" style="margin-left: 350px;">
+          <form class="form-inline" role="search" action="{% url 'search_results' %}">
+            <div class="input-field">
+                <input id="search" type="search" name="title" placeholder="Search Project" required style="width: 50%;">
+    
+                <i class="material-icons">close</i>
+            </div>
+        </form>
+        </div>
+      </ul>
+    </div>
+  </nav>
+
+
+</div>
+
+<ul id="slide-out" class="sidenav sidenav-fixed">
+  <li>
+    {% if user.is_authenticated %}
+    <div class="user-view">
+      <div class="background">
+        <img
+          src="https://images.pexels.com/photos/302743/pexels-photo-302743.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+      </div>
+      <a href="#user"><img class="circle"
+          src="{{user.profile.profilepic.url}}"></a>
+      <a href="{% url 'profile' user.id %}"><span class="white-text name">{{user.first_name}} &nbsp;
+          {{user.last_name}}</span></a>
+      <a href="{% url 'profile' user.id %}"><span class="white-text email">{{user.email}}</span></a>
+    </div>
+    <li><a href="{% url 'addproject' %}"><i class="material-icons">add</i>Add Project</a></li>
+    <li><a href="{% url 'profile' user.id %}"><i class="material-icons">mood</i>My Profile</a></li>
+    <li><a href="{% url 'logout' %}"><i class="material-icons">exit_to_app</i>Logout</a></li>
+    {% else %}
+    <li><a class="waves-effect" href="{% url 'login' %}">Login</a></li>
+    <li><a class="waves-effect" href="{% url 'register' %}">Sign Up</a></li>
+    {% endif %}
+  </li>
+
+  <li>
+    <div class="divider"></div>
+  </li>
+  <li><a class="subheader">Awwards Clone</a></li>
+ 
+  <li><a class="waves-effect" href="/">Home</a></li>
+  <li><a class="waves-effect" href="#!">About</a></li>
+  <li><a class="waves-effect" href="#!">Pricing</a></li>
+  <li><a class="waves-effect" href="#!">Contact</a></li>
+  <li><a class="waves-effect" href="#!">Mission</a></li>
+</ul>
+<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+
+
+{% block content %} {% endblock %}
+
+{% block js %} {% endblock %}
+
+{% include 'material/includes/material_js.html' %}
+
+
+
+<style>
+  body {
+    background-color: #F8F9F9;
+    font-family: 'Asap Condensed', sans-serif;
+  }
+
+  header,
+  main,
+  footer {
+    padding-left: 300px;
+  }
+
+  @media only screen and (max-width : 992px) {
+
+    header,
+    main,
+    footer {
+      padding-left: 0;
+    }
+
+    .details {
+      margin-left: 0;
+    }
+  }
+</style>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(elems, {
+      edge: "left",
+      closeOnClick: true,
+      menuWidth: 700,
+      outDuration: 800,
+      draggable: true
+    });
+  });
+
+</script>
+
+
+</body>
+
+
+
+</html>
