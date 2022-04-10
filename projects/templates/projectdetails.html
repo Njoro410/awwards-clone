@@ -8,7 +8,7 @@
 
   <p><span id="title">{{details.title}}</span> by <a href="{% url 'profile' details.owner %}">{{project.owner.first_name}}</a></p> 
   <p>{{details.description}}</p>
-  <p>Average Score: <span class="score">{{total}}</p></span>
+  <p>Average Score: <span class="score">{{total|stringformat:".1f" }}</p></span>
   <a href="{{details.url}}" class="waves-effect waves-light btn">Visit Site</a>
   <a href="{% url 'addreview' details.id %}" class="waves-effect waves-light btn">Add Review</a>
   <div class="container-fluid detail">
