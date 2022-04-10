@@ -20,7 +20,7 @@ class Projects(models.Model):
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='owner')
     title = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='projects/', default='image')
+    image = models.ImageField(upload_to='projects/', default='https://wallpaperaccess.com/full/1129018.jpg')
     description = models.TextField()
     url = models.URLField()
     # rating = models.ForeignKey('Rating', on_delete=models.CASCADE, null=True)
