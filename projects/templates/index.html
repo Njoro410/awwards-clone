@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="container details">
+
+    <div class="row">
+        {% for project in projects %}
+
+        <div class="col m4">
+
+            <div class="card">
+                <a href="{% url 'projectdetails' project.id %}">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator"
+                            src="{{project.image.url}}">
+                    </div>
+                </a>
+                <div class="card-content">
+                    <span class="card-title activator">{{project.title}}<i
+                            class="material-icons right">more_vert</i></span>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title">{{project.title}}<i
+                            class="material-icons right">close</i></span>
+                    <p>{{project.description}}</p>
+                </div>
+            </div>
+
+        </div>
+
+        {% endfor %}
+    </div>
+
+    <!-- <a class="waves-effect waves-light btn blue" onclick="$('.tap-target').tapTarget('open')">Open tap target</a> -->
+  <!-- Element Showed -->
+  <div id="gitter" class="fixed-action-btn"><a id="menu" class="btn-floating btn-large teal lighten-2" href="{% url 'addproject' %}"><i class="large material-icons">add</i></a></div>
+
+  <!-- Tap Target Structure -->
+  <div class="tap-target" data-target="menu">
+    <div class="tap-target-content">
+      <h5>Title</h5>
+      <p>A bunch of text</p>
+    </div>
+  </div>
+  
+
+
+</div>
+
+
+<style>
+    .details {
+        margin-left: 350px;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+    }
+    .card-title {
+        color: #4db6ac;
+    }
+    p {
+        color: #009688;
+    }
+</style>
+
+{% endblock %}
+{% block js %}
+
+
+<script type="text/javascript">
+
+window.addEventListener("load", function() {
+    var elems = document.querySelectorAll('.tap-target');
+    var instances = M.TapTarget.init(elems, {});
+  });
+</script>
+{% endblock %}
