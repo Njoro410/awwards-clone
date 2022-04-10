@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load material_form %}
+
+<div class="container details">
+<h5>Search results</h5>
+    <div class="row">
+        {% for project in projects %}
+
+        <div class="col m4">
+
+            <div class="card">
+                <a href="{% url 'projectdetails' project.id %}">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator"
+                            src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg">
+                    </div>
+                </a>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{project.title}}<i
+                            class="material-icons right">more_vert</i></span>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">{{project.title}}<i
+                            class="material-icons right">close</i></span>
+                    <p>{{project.description}}</p>
+                </div>
+            </div>
+
+        </div>
+
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+
+</div>
+
+<style>
+    .details {
+        margin-left: 350px;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+{% endblock %}
