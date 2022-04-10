@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container details">
+
+
+
+  <p><span id="title">{{details.title}}</span> by <a href="{% url 'profile' details.owner %}">{{project.owner.first_name}}</a></p> 
+  <p>{{details.description}}</p>
+  <p>Average Score: <span class="score">{{total}}</p></span>
+  <a href="{{details.url}}" class="waves-effect waves-light btn">Visit Site</a>
+  <a href="{% url 'addreview' details.id %}" class="waves-effect waves-light btn">Add Review</a>
+  <div class="container-fluid detail">
+    {% for rating in rating %}
+    <div class="col s12 m7">
+      <div class="card horizontal">
+        <div class="card-image">
+        </div>
+        <div class="card-stacked">
+          <div class="card-header">
+            <p class="header">{{rating.user.first_name}}'s review</p>
+            <div class="divider"></div>
+          </div>
+          <div class="card-content" style="display: flex;flex-direction: row;">
+            <p>Design: <span class="rate">{{rating.design}}</span></p>&nbsp;
+            <p>Usability: <span class="rate">{{rating.usability}}</span></p>&nbsp;
+            <p>Content: <span class="rate">{{rating.content}}</span></p>
+          </div>
+          <div class="card-footer">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+    {% for review in reviews %}
+    <ul class="collection">
+      <li class="collection-item avatar">
+        <img
+          src="{{review.user.profile.profilepic.url}}"
+          alt="" class="circle">
+        <span class="title">{{review.user.username}} on {{review.created}}</span>
+        <p>{{review.review}}</p>
+      </li>
+    </ul>
+    {% empty %}
+    <p>No Reviews</p>
+    {% endfor %}
+
+  </div>
+
+
+
+
+</div>
+
+<style>
+  .details {
+    margin-left: 350px;
+  }
+  .detail {
+    border: 1px solid #ccc7c7;
+    border-radius: 1px;
+    margin-top: 11px;
+    margin-bottom: 1px;
+    padding: 10px;
+  }
+  #title {
+    color: #4db6ac;
+    font-weight: bolder;
+  }
+  .score {
+    color: #4db6ac;
+    font-size: large;
+  }
+  .card-content p {
+    color: #4db6ac;
+  }
+  .rate {
+    font-size: larger;
+    color: black;
+  }
+</style>
+{% endblock %}
