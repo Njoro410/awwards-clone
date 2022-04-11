@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-
+import django_heroku
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,7 +31,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+#cloudinary config
+cloudinary.config( 
+  cloud_name = "dn6zkeb6i", 
+  api_key = "824151859578476", 
+  api_secret = "I8NNshAJn-Ge5wFoAyTzemF3nW4" 
+)
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'material',
     'account.apps.AccountConfig',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -78,12 +87,23 @@ WSGI_APPLICATION = 'awwards.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'awards',
+#         'USER': 'brian',
+#         'PASSWORD': '12345',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'awards',
-        'USER': 'brian',
-        'PASSWORD': '12345',
+        'NAME':'d4s9oq88h84vo0',
+        'USER':'foapmlzvpgmzgn',
+        'PASSWORD':'1762e258a265b556896eadc2efc69b0c23fd581d1ad34d948fe3771a03222180',
+        'HOST':'ec2-52-201-124-168.compute-1.amazonaws.com',
+        'PORT':'5432',
     }
 }
 
@@ -127,7 +147,7 @@ STATIC_URL = 'static/'
 #MEDIA FILES
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

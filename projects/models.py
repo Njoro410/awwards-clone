@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -8,9 +9,9 @@ from django.utils import timezone
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
-    profilepic = models.ImageField(
-        upload_to='profile_pic/', default='Profile pic', blank=True)
-    # projects = models.ForeignKey('Projects', on_delete=models.CASCADE)
+    # profilepic = models.ImageField(
+    #     upload_to='profile_pic/', default='Profile pic', blank=True)
+    profilepic = CloudinaryField('image')
 
     def __str__(self):
         return f'{self.user.username}'
@@ -20,7 +21,8 @@ class Projects(models.Model):
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='owner')
     title = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='projects/', default='https://wallpaperaccess.com/full/1129018.jpg')
+    # image = models.ImageField(upload_to='projects/', default='https://wallpaperaccess.com/full/1129018.jpg')
+    image = CloudinaryField('image')
     description = models.TextField()
     url = models.URLField()
     # rating = models.ForeignKey('Rating', on_delete=models.CASCADE, null=True)
