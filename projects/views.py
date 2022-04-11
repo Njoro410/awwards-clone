@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 def Index(request):
     # projects = getprojects()
-    response = requests.get('http://127.0.0.1:8000/api/allprojects/')
+    response = requests.get('https://awwards5652.herokuapp.com/api/allprojects/')
 
     projects = response.json()
 
@@ -32,7 +32,7 @@ def addProject(request):
 def projectDetails(request, id):
     project = Projects.objects.get(id=id)
     response = requests.get(
-        'http://127.0.0.1:8000/api/specificProject/{}/'.format(id))
+        'https://awwards5652.herokuapp.com/api/specificProject/{}/'.format(id))
     # convert reponse data into json
     details = response.json()
     rating = Rating.objects.filter(project_id=id)
@@ -70,11 +70,11 @@ def addreview(request, id):
 
 @login_required
 def uProfile(request,id):
-    response = requests.get('http://127.0.0.1:8000/api/userDetails/{}/'.format(id))
+    response = requests.get('https://awwards5652.herokuapp.com/api/userDetails/{}/'.format(id))
     details = response.json()
-    response2 = requests.get('http://127.0.0.1:8000/api/userProjects/{}/'.format(id))
+    response2 = requests.get('https://awwards5652.herokuapp.com/api/userProjects/{}/'.format(id))
     projects = response2.json()
-    response3 = requests.get('http://127.0.0.1:8000/api/profile/{}/'.format(id))
+    response3 = requests.get('https://awwards5652.herokuapp.com/api/profile/{}/'.format(id))
     data = response3.json()
     user = request.user
 
