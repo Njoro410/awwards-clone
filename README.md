@@ -84,7 +84,7 @@ If you have any feedback, please reach out to me at briannjoroge420@gmail.com
 
 ### Source
 ```
-https://newsapi.org/
+https://awwards5652.herokuapp.com/api/{'endpoints'}
 ```
 #### Get allprojects
 
