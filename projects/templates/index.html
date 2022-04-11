@@ -13,7 +13,7 @@
             <div class="card">
                 <a href="{% url 'projectdetails' project.id %}">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="https://res.cloudinary.com/dn6zkeb6i/{{project.image.url}}" alt="image">
+                        <img class="activator" src="https://res.cloudinary.com/dn6zkeb6i/{{project.image}}" alt="image">
                     </div>
                 </a>
                 <div class="card-content">
@@ -68,11 +68,11 @@
         color: #009688;
     }
 
-    .activator {
+    /* .activator {
         width: 100%;
         height:15vw;
         object-fit: cover;
-    }
+    } */
 </style>
 
 {% endblock %}
